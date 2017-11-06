@@ -1,0 +1,29 @@
+{
+  "name": "hangman-node-app",
+  "version": "1.0.0",
+  "description": "command line node app featuring a familiar game of hangman",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catslug/hangman-node-app.git"
+  },
+  "keywords": [
+    "hangman",
+    "node",
+    "inquirer"
+  ],
+  "author": "Lindsay Wall",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/catslug/hangman-node-app/issues"
+  },
+  "homepage": "https://github.com/catslug/hangman-node-app#readme",
+  "dependencies": {
+    "cowsay": "^1.2.1",
+    "hangman-ascii": "^1.0.4",
+    "inquirer": "^3.3.0"
+  }
+}
