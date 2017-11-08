@@ -25,7 +25,11 @@ inquirer.prompt([
 			word.print();
 			askForUserGuess();
 		} else {
-			return console.log(cowsay.say({ text: "That's okay! Let me know if you change your mind.", e: "OO", t: "U" }))
+			return console.log(cowsay.say({ 
+				text: "That's okay! Let me know if you change your mind.", 
+				e: "OO", 
+				t: "U" 
+			}))
 		}
 	})
 
@@ -60,7 +64,11 @@ function askForUserGuess() {
 							word.print();
 							askForUserGuess();
 						} else {
-							console.log(cowsay.say({ text: "That's m-ooo-kay! Come back again!", e: "v v", t: "U" }));
+							console.log(cowsay.say({ 
+								text: "That's m-ooo-kay! Come back again!", 
+								e: "v v", 
+								t: "U" 
+							}));
 						}
 					})
 				}

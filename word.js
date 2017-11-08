@@ -34,13 +34,21 @@ var CurrentWord = function(obj) {
 	}
 	this.didYouWin = function() {
 		var isStillGuessing = this.userSeenArr.includes("_") ? true : false;
-		if (!isStillGuessing && this.guessesLeft > 0) {
+		if (!isStillGuessing && player.guessesLeft > 0) {
 			player.incrementWins();
-			console.log(cowsay.say({ text: "You won! The answer was " + this.currentWordArr.join("") + ".", e: "OO", t: "U"  }));
+			console.log(cowsay.say({ 
+				text: "You won! The answer was " + this.currentWordArr.join("") + ".", 
+				e: "OO", 
+				t: "U"  
+			}));
 			this.needANewWord = true;
-		} else if (isStillGuessing && this.guessesLeft === 0) {
+		} else if (isStillGuessing && player.guessesLeft === 0) {
 			player.incrementLosses();
-			console.log(cowsay.say({ text: "You lost! The answer was " + this.currentWordArr.join("") + ".", e: "oO", t: "U" }));
+			console.log(cowsay.say({ 
+				text: "You lost! The answer was " + this.currentWordArr.join("") + ".", 
+				e: "oO", 
+				t: "U" 
+			}));
 			this.needANewWord = true;
 		}
 	}
@@ -51,7 +59,11 @@ var CurrentWord = function(obj) {
 			this.popLetters(this.userGuess);
 			this.didYouWin();
 		} else {
-			console.log(cowsay.say({ text: "Please choose a single, valid letter, and make sure it is one you have not already chosen.", e: "Oo", t: "U" }))
+			console.log(cowsay.say({ 
+				text: "Please choose a single, valid letter, and make sure it is one you have not already chosen.", 
+				e: "Oo", 
+				t: "U" 
+			}))
 		}
 	}
 	this.popLetters = function(val) {
