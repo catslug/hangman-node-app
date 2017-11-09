@@ -1,25 +1,30 @@
 var Guess = require("./guess.js");
 var Letter = require("./letter.js");
-var cowsay = require("cowsay");
 var Player = require("./player.js");
+var cowsay = require("cowsay");
 var thisWord
 var letter
 var player
 
 var CurrentWord = function(obj) {
 	this.needANewWord = false;
+	this.needANewPlayer = true;
 	this.userGuess = obj.userGuess; 
 	this.guessesArr = []; // all of the possible letters guessed by the user
 	this.currentWordArr = []; // the array containing the current word 
 	this.userSeenArr = []; // the visible array displaying letters revealed or underscores to user
 	this.start = function() {
-		player = new Player({});
+		if (this.needANewPlayer) {
+			player = new Player({});
+			this.needANewPlayer = false;
+		}
 		this.needANewWord = false;
 		this.guessesArr = [];
 		this.currentWordArr = [];
 		this.userSeenArr = [];
 		thisWord = Guess.getAWord(); 
 		this.underScoreIt(thisWord, this.currentWordArr, this.userSeenArr);
+		this.print();
 		return thisWord;
 	}
 	this.underScoreIt = function(val, arr1, arr2) {
@@ -29,8 +34,10 @@ var CurrentWord = function(obj) {
 		}
 	}
 	this.print = function() {
-		console.log("Wins: " + player.wins + "\nLosses: " + player.losses + "\nGuesses Left: " + player.guessesLeft + 
-			"\nYour guesses so far: " + this.guessesArr.join(" ") + "\nHere's your word to guess: " + this.userSeenArr.join(" "));
+		console.log("Wins: " + player.wins + "\nLosses: " + player.losses + 
+			"\nGuesses Left: " + player.guessesLeft + 
+			"\nYour guesses so far: " + this.guessesArr.join(" ") + 
+			"\nHere's your word to guess: " + this.userSeenArr.join(" "));
 	}
 	this.didYouWin = function() {
 		var isStillGuessing = this.userSeenArr.includes("_") ? true : false;
@@ -39,7 +46,7 @@ var CurrentWord = function(obj) {
 			console.log(cowsay.say({ 
 				text: "You won! The answer was " + this.currentWordArr.join("") + ".", 
 				e: "OO", 
-				t: "U"  
+				T: "U"  
 			}));
 			this.needANewWord = true;
 		} else if (isStillGuessing && player.guessesLeft === 0) {
@@ -47,7 +54,7 @@ var CurrentWord = function(obj) {
 			console.log(cowsay.say({ 
 				text: "You lost! The answer was " + this.currentWordArr.join("") + ".", 
 				e: "oO", 
-				t: "U" 
+				T: "U" 
 			}));
 			this.needANewWord = true;
 		}

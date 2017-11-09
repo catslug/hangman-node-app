@@ -23,7 +23,6 @@
   "homepage": "https://github.com/catslug/hangman-node-app#readme",
   "dependencies": {
     "cowsay": "^1.2.1",
-    "hangman-ascii": "^1.0.4",
     "inquirer": "^3.3.0"
   }
 }

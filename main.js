@@ -4,11 +4,6 @@ var CurrentWord = require("./word.js");
 var hangman = require("hangman-ascii");
 var cowsay = require("cowsay");
 
-// initializing variables
-var wins = 0;
-var losses = 0;
-// var hangmanLevel = 0;
-
 inquirer.prompt([
 	{
 		type: "confirm",
@@ -17,26 +12,19 @@ inquirer.prompt([
 	}
 	]).then(function(answers) {
 		if (answers.confirm) {
-			word = new CurrentWord({ 
-				wins: wins,
-				losses: losses,
-			});
+			word = new CurrentWord({});
 			word.start();
-			word.print();
 			askForUserGuess();
 		} else {
 			return console.log(cowsay.say({ 
 				text: "That's okay! Let me know if you change your mind.", 
 				e: "OO", 
-				t: "U" 
+				T: "U" 
 			}))
 		}
 	})
 
 function askForUserGuess() {
-	// hangman.drawLevel(hangmanLevel, "cyan");
-	// hangmanLevel++;
-
 	inquirer.prompt([
 	{
 		type: "input",
@@ -49,7 +37,6 @@ function askForUserGuess() {
 			word.print();
 
 			if (!word.needANewWord) {
-				// hangman.drawLevel(hangmanLevel, "cyan");
 				askForUserGuess();
 			} else if (word.needANewWord) {
 				inquirer.prompt([
@@ -61,13 +48,12 @@ function askForUserGuess() {
 					]).then(function(answers) {
 						if (answers.playAgain) {
 							word.start();
-							word.print();
 							askForUserGuess();
 						} else {
 							console.log(cowsay.say({ 
 								text: "That's m-ooo-kay! Come back again!", 
 								e: "v v", 
-								t: "U" 
+								T: "U" 
 							}));
 						}
 					})
