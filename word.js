@@ -17,6 +17,14 @@ var CurrentWord = function(obj) {
 		if (this.needANewPlayer) {
 			player = new Player({});
 			this.needANewPlayer = false;
+		} else if (!this.needANewPlayer && this.needANewWord && !Guess.isAtTheEnd()) {
+			player.guessesLeft = 7;
+		} else if (Guess.isAtTheEnd()) {
+			return console.log(cowsay.say({
+				text: "Oops, you're at the end! You've guessed all the wooooords. See you later, alligator.",
+				e: "^^",
+				T: "U"
+			}));
 		}
 		this.needANewWord = false;
 		this.guessesArr = [];
@@ -69,7 +77,7 @@ var CurrentWord = function(obj) {
 			console.log(cowsay.say({ 
 				text: "Please choose a single, valid letter, and make sure it is one you have not already chosen.", 
 				e: "Oo", 
-				t: "U" 
+				T: "U" 
 			}))
 		}
 	}
