@@ -1,7 +1,6 @@
 var inquirer = require("inquirer");
 var fs = require("fs");
 var CurrentWord = require("./word.js");
-var hangman = require("hangman-ascii");
 var cowsay = require("cowsay");
 
 inquirer.prompt([
