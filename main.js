@@ -1,5 +1,4 @@
 var inquirer = require("inquirer");
-var fs = require("fs");
 var CurrentWord = require("./word.js");
 var cowsay = require("cowsay");
 
